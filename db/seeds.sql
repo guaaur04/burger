@@ -1,6 +1,6 @@
-INSERT INTO burgers (name) VALUES ('Eclipse');
-INSERT INTO burgers (name) VALUES ('New Moon');
-INSERT INTO burgers (name, sleepy) VALUES ('Rodeo', true);
-INSERT INTO burgers (name, sleepy) VALUES ('Crescent', true);
-INSERT INTO burgers (name, sleepy) VALUES ('Buffalo', true);
-INSERT INTO burgers (name) VALUES ('Breakfast');
+INSERT INTO burgers (burger_name) VALUES ('Good');
+INSERT INTO burgers (burger_name) VALUES ('New Moon');
+INSERT INTO burgers (burger_name) VALUES ('Rodeo');
+INSERT INTO burgers (burger_name) VALUES ('Crescent');
+INSERT INTO burgers (burger_name) VALUES ('Buffalo', true);
+INSERT INTO burgers (burger_name) VALUES ('Breakfast');
