@@ -1,10 +1,13 @@
-// Create the burgers_controller.js file.
+// Import Express
+const express = require("express");
 
-// Inside the burgers_controller.js file, import the following:
+const router = express.Router();
 
-// Express
+//Import burger.js
+const burger = require("../models/burger.js");
 
-// burger.js
+// Create all our routes 
 
-// Create the router for the app, and export the router at the end of your file.
+
+//Export the router at the end of your file.
 

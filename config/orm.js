@@ -3,7 +3,6 @@ var connection = require("../config/connection.js");
 
 
 // Helper function for SQL syntax
-
 function printQuestionMarks(num) {
     var arr = [];
   
@@ -16,12 +15,10 @@ function printQuestionMarks(num) {
   
 
 // Helper function to convert object key/value pairs to SQL syntax
-
 function objToSql(ob) {
     var arr = [];
   
     // loop through keys and push key/value as a string int arr
-
     for (var key in ob) {
       var value = ob[key];
 
@@ -36,7 +33,7 @@ function objToSql(ob) {
     return arr.toString();
 }
 // Object for SQL statement functions
-
+//selectAll()
 var orm = {
     all: function(tableInput, cb) {
         var queryString = "SELECT * FROM" + tableInput + ";";
@@ -48,8 +45,7 @@ var orm = {
         });
     },
 
-    // Create the methods that will execute the necessary MySQL commands in the controllers. These are the methods to use in order to retrieve and store data in your database
-
+// insertOne()
     create: function(table, cols, vals, cb) {
         var queryString = "INSERT INTO" + table; 
 
@@ -71,13 +67,39 @@ var orm = {
     });
 },
 
-//selectAll()
-
-
-// insertOne()
-
-
 // updateOne()
+update: function(table, objColVals, condition, cb) {
+    var queryString = "UPDATE " + table;
+
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    queryString += " WHERE ";
+    queryString += condition;
+
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+},
+
+// deleteOne()
+delete: function(table, condition, cb) {
+    var queryString = "DELETE FROM " + table;
+    queryString += " WHERE ";
+    queryString += condition;
+
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+  }
 };
 // Export the orm object for the model (burger.js).
 module.exports = orm;
