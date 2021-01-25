@@ -32,11 +32,44 @@ function objToSql(ob) {
         arr.push(key + "=" + value);
       }
     }
-  
-    // translate array of strings to a single comma-separated string
-    return arr.toString();
 
-// Create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database
+    return arr.toString();
+}
+// Object for SQL statement functions
+
+var orm = {
+    all: function(tableInput, cb) {
+        var queryString = "SELECT * FROM" + tableInput + ";";
+        connection.query(queryString, function(err, result) {
+            if (err) {
+            throw err;
+        }
+        cb(result);
+        });
+    },
+
+    // Create the methods that will execute the necessary MySQL commands in the controllers. These are the methods to use in order to retrieve and store data in your database
+
+    create: function(table, cols, vals, cb) {
+        var queryString = "INSERT INTO" + table; 
+
+    queryString += " (";
+    queryString += cols.toString();
+    queryString += ") ";
+    queryString += "VALUES (";
+    queryString += printQuestionMarks(vals.length);
+    queryString += ") ";
+
+    console.log(queryString);
+
+    connection.query(queryString, vals, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+},
 
 //selectAll()
 
@@ -45,6 +78,6 @@ function objToSql(ob) {
 
 
 // updateOne()
-
+};
 // Export the orm object for the model (burger.js).
 module.exports = orm;
