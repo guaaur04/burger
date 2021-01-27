@@ -9,7 +9,7 @@ const burger = require("../models/burger.js");
 // Create all our routes 
 
 router.get("/", function(req, res) {
-    cat.all(function(data) {
+    burger.all(function(data) {
       var hbsObject = {
         burgers: data
       };
