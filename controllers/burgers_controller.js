@@ -1,11 +1,11 @@
 // Import Express
-const express = require("express");
+var express = require("express");
 
-const router = express.Router();
+var router = express.Router();
 
 //Import burger.js
 const burger = require("../models/burger.js");
-
+ 
 // Create all our routes 
 
 router.get("/", function(req, res) {
@@ -19,8 +19,9 @@ router.get("/", function(req, res) {
   });
   
   router.post("/api/burgers", function(req, res) {
+    console.log(req.body, "!!!!!!!!");
     burger.create([
-      "name", "Rodeo"
+      "name", "devoured"
     ], [
       req.body.name, req.body.devoured
     ], function(result) {
@@ -34,8 +35,8 @@ router.get("/", function(req, res) {
   
     console.log("condition", condition);
   
-    burger.update({
-      devoured: req.body.devoured
+  burger.update({
+      devoured: req.body.devoured,
     }, condition, function(result) {
       if (result.changedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
