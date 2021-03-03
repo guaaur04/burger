@@ -1,10 +1,9 @@
 // Import Express
-var express = require("express");
-
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 //Import burger.js
-const burger = require("../models/burger.js");
+let burger = require("../models/burger.js");
  
 // Create all our routes 
 
@@ -48,8 +47,8 @@ router.get("/", function(req, res) {
   });
   
   router.delete("/api/burgers/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-  
+    let condition = "id = " + req.params.id;
+    console.log("req.params.id");
     burger.delete(condition, function(result) {
       if (result.affectedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
